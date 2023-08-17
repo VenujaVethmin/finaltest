@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default function Api() {
   const [Data, setData] = React.useState([]); // Initialize with an empty array
 
@@ -8,7 +9,7 @@ export default function Api() {
   React.useEffect(() => {
     fetch("https://animechan.xyz/api/random")
       .then((response) => response.json())
-      .then((quote) => setData([quote])); // Store the quote in an array
+      .then((quote) => setData(prev=>[...prev,quote])); // Store the quote in an array
   }, [testpush]);
 
   function test() {
@@ -26,6 +27,7 @@ export default function Api() {
   return (
     <div>
       {display}
+      
       
       <button onClick={test}>Next</button>
     </div>

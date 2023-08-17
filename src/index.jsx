@@ -1,30 +1,27 @@
 import React from "react";
-import { render } from "react-dom";
-import ReactDom from "react-dom/client";
-import { BrowserRouter,Routes,Route } from "react-router-dom";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import Api from "./Api";
-import Navbar from "./Navbar";
-function App(){
-    return(
+import Photos from "./photos";
+import Photo_detail from "./photo_details";
+import "./styles.css";
 
-        <BrowserRouter>
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link className="t1" to="/api">Home</Link>
+        <Link className="t1" to="/photos">Photos</Link>
+      </nav>
 
-         <Navbar/>
-
-        <Routes>
-        {/* <Api/> */}
-            
-        </Routes>
-
-        
-
-        </BrowserRouter>
-        
-           
-        
-    )
+      <Routes>
+        <Route path="/api" element={<Api />} />
+        <Route path="/photos" element={<Photos />} /> {/* Added the missing equal sign (=) here */}
+        <Route path="/photos/photo_details/:id" element={<Photo_detail/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-
-ReactDom.createRoot(document.getElementById("root")).render(<App/>);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
